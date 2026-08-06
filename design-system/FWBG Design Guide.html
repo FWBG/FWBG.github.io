@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="omelette-print-source" content="v1786042145491906 readme.md">
+<title>Fort Worth Botanic Garden — Design System</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+*{animation-delay:-99s !important;animation-duration:.001s !important;animation-iteration-count:1 !important;animation-fill-mode:both !important;animation-play-state:running !important;transition-duration:0s !important}
+doc-page:not(:defined){visibility:hidden}
+body{margin:0}
+doc-page{--ink:#293A2E;--meadow:#8EA937;--sun:#F68A3D;--lime:#F2EDE7;--rule:#d8d1c7;font-family:"Satoshi","Satoshi Variable",Arial,sans-serif;font-weight:500;color:var(--ink);font-size:10.5pt;line-height:1.5}
+h1{font-family:"new-kansas",Georgia,serif;font-weight:100;font-size:34pt;line-height:1.1;margin:0 0 .2em;letter-spacing:-.01em}
+.standfirst{font-size:11.5pt;line-height:1.5;max-width:34em;color:#4a5a4e;margin:0 0 1.6em}
+h2{font-family:"new-kansas",Georgia,serif;font-weight:100;font-size:21pt;line-height:1.15;margin:2.2em 0 .5em;padding-top:.5em;border-top:1px solid var(--rule)}
+h3{font-size:9pt;font-weight:900;letter-spacing:.1em;text-transform:uppercase;margin:1.7em 0 .5em;color:var(--ink)}
+h4{font-size:10.5pt;font-weight:900;margin:1.2em 0 .3em}
+p{margin:0 0 .8em;max-width:38em}
+ul{margin:0 0 .9em;padding-left:1.1em;max-width:38em}
+li{margin:0 0 .3em;padding-left:.2em}
+li::marker{color:var(--meadow)}
+strong{font-weight:900}
+em{font-style:italic;color:#4a5a4e}
+code{font-family:ui-monospace,"SFMono-Regular",Menlo,monospace;font-size:.86em;background:#e9e3d9;padding:.1em .32em;border-radius:3px}
+a{color:#2f6b4f;text-decoration:underline}
+a:hover{color:var(--meadow)}
+table{border-collapse:collapse;width:100%;margin:0 0 1.2em;font-size:9.5pt}
+th{text-align:left;font-size:8pt;font-weight:900;letter-spacing:.09em;text-transform:uppercase;padding:0 .8em .4em 0;border-bottom:1.5px solid var(--ink);vertical-align:bottom}
+td{padding:.55em .8em .55em 0;border-bottom:1px solid var(--rule);vertical-align:top}
+hr{border:0;border-top:1px solid var(--rule);margin:2em 0}
+.eyebrow{font-size:8pt;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--sun);margin:0 0 1em}
+.swatches{display:flex;gap:0;margin:.2em 0 1.2em;break-inside:avoid;max-width:38em}
+.sw{flex:1;height:46px;display:flex;align-items:flex-end;padding:5px 7px;font-size:7pt;font-weight:900;letter-spacing:.05em;color:#F2EDE7}
+.note{background:#e9e3d9;padding:.9em 1.1em;border-radius:6px;margin:0 0 1.2em;max-width:38em;break-inside:avoid;font-size:9.5pt}
+.slot-head{display:flex;justify-content:space-between;align-items:baseline;font-size:7.5pt;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#8a8478;padding-bottom:6px;border-bottom:1px solid var(--rule)}
+.slot-foot{font-size:7.5pt;letter-spacing:.08em;color:#8a8478;padding-top:6px;border-top:1px solid var(--rule)}
+</style>
+</head><body>
+<doc-page margin="0.8in">
+<div slot="header"><div class="slot-head"><span>Fort Worth Botanic Garden</span><span>Design System</span></div></div>
+<div slot="footer"><div class="slot-foot">Derived from the FWBG brand guidelines (June 2025) and fwbg.org</div></div>
+
+<p class="eyebrow">Design guide &amp; manifest</p>
+<h1>Fort Worth Botanic Garden Design System</h1>
+<p class="standfirst">The design guide and manifest for FWBG. Everything here is derived from two sources of truth: the official brand guidelines PDF and the live production website.</p>
+<div class="swatches"><div class="sw" style="background:#293A2E">Evergreen</div><div class="sw" style="background:#8EA937">Meadow</div><div class="sw" style="background:#F68A3D">Sunstone</div><div class="sw" style="background:#F2EDE7;color:#293A2E">Limestone</div></div>
+
+<h2>Sources</h2>
+<table><thead><tr><th>Source</th><th>What it gave us</th></tr></thead><tbody>
+<tr><td><code>uploads/1. FWBG-brand-guidelines-June-2025.pdf</code> (v1.0, June 2025, 54pp)</td><td>Brand foundation, voice, logo rules, primary + four seasonal palettes with Pantone/CMYK/RGB and contrast ratios, typography rules, photography direction, event branding, directional signage</td></tr>
+<tr><td><a href="https://fwbg.org">fwbg.org</a> — WordPress, theme <code>habitat-bootstrap</code> (CodyHouse-derived)</td><td>Every token value, the production component CSS (buttons, badges, chips, form controls, cards, mega-nav, accordion), the logo SVGs, the icon set, and the photography library</td></tr>
+<tr><td>Extracted working notes</td><td><code>research/brand-guidelines.txt</code>, <code>research/theme-style.css</code>, <code>research/theme-seasons.css</code>, <code>research/typekit.css</code></td></tr>
+</tbody></table>
+<p>No Figma file or code repository was supplied. If either exists, hand it over — the component inventory below was reconstructed from shipped CSS, not from a component library manifest.</p>
+
+<h2>The organisation</h2>
+<p>The <strong>Fort Worth Botanic Garden (FWBG)</strong> is the oldest major botanic garden in Texas: 120 acres and 23 specialty gardens at 3220 Botanic Garden Blvd, Fort Worth. It operates in partnership with the <strong>Botanical Research Institute of Texas (BRIT)</strong>, its scientific arm (1700 University Drive), which runs the herbarium, library, press and conservation programmes. In July 2026 FWBG received the National Medal for Museum and Library Service.</p>
+<p><strong>Naming hierarchy</strong> (from the guidelines, and it is a hard rule): first mention is always "the Fort Worth Botanic Garden (FWBG)", then "FWBG", then "the Garden". "FWBG" must be introduced before "the Garden" is used. The exception is when "the Garden" is part of an event name — <em>Christmas at the Garden</em>.</p>
+<p><strong>Mission.</strong> To explore the critically important world of plants, collaborate to discover the role they play in our cultural and natural environments, and engage people to conserve nature and improve the human experience.</p>
+<p><strong>Tagline.</strong> Explore, Discover &amp; Engage.</p>
+<p><strong>Brand pillars.</strong> Ever-Blooming Inspiration · Rooted in Community · Nature as a Living Classroom · Science that Sustains.</p>
+<h3>Surfaces represented here</h3>
+<ul>
+<li><strong>fwbg.org</strong> — the public marketing and ticketing website. Rebuilt from the ground up in 2025. This is the primary UI kit (<code>ui_kits/website/</code>).</li>
+<li><strong>Event &amp; print creative</strong> — the modular event layout system from the guidelines: billboards, web banners, social posts, rack cards, email. Recreated in <code>ui_kits/event_creative/</code>.</li>
+<li><strong>Directional signage</strong> — documented in the guidelines (Satoshi ALL CAPS exterior, New Kansas Thin interior, 6.5:1 minimum contrast, 1" cap height) but not built as a kit; it is a fabrication spec, not a screen surface.</li>
+</ul>
+
+<h2>Content fundamentals</h2>
+<p><strong>Voice.</strong> Welcoming, educational, community-focused, inspired by nature — with a "storyteller's soul". Descriptive where it earns the reader's attention, then out of the way. The guidelines are explicit: <em>"pictures are worth a thousand words. Simplify the copy where possible, and let the beauty of the Garden speak for itself."</em></p>
+<p><strong>Reading level.</strong> Target 8th grade. This is a real constraint, not a suggestion.</p>
+<p><strong>Person.</strong> Second person for the visitor ("your very first visit", "Plan Your Visit"), first person plural for the institution ("We are welcoming", "our living collections"). Never "I". Never address the reader as "users" or "customers" — they are guests, members, volunteers, visitors.</p>
+<p><strong>Casing.</strong> Title Case for headlines and buttons. ALL CAPS reserved for eyebrows, sponsor descriptor lines ("PRESENTED BY", "SUPPORTED BY", "IN PARTNERSHIP WITH") and exterior signage. Sentence case for body copy and UI labels.</p>
+<p><strong>Sentence rhythm.</strong> Short declaratives stacked into a scene, then one longer sentence that lands the idea. From the brand story: <em>"Every day brings a new adventure when you step into nature. Each path invites discovery. Every season tells a different story at FWBG."</em></p>
+<p><strong>Headline pattern.</strong> The approved headline bank leans on three shapes:</p>
+<ul>
+<li><em>"X. It's in our Nature"</em> — Beauty / Science / Education</li>
+<li><em>"Where …"</em> — "Where nature tells the story", "Where science blooms and curiosity grows", "Where every visit plants a memory"</li>
+<li>Botanical present-continuous — "The Garden never stops blooming", "Forever in Bloom", "Always blooming, always evolving"</li>
+</ul>
+<p>Other approved lines: Step into nature · Between soil and sky · Together, We Grow · Rooted in beauty since 1934 · A garden for all seasons · Come see what's in season · More than a garden. A living legacy.</p>
+<p><strong>Calls to action.</strong> Short verb phrases, Title Case: Get Tickets · Buy Tickets · Plan Your Visit · Learn More · Become a Member · View Map · Register Now · Let's Go.</p>
+<p><strong>Emoji.</strong> Not used. Nothing in the guidelines, the site, or the print system uses emoji. Do not introduce them.</p>
+<p><strong>Unicode as decoration.</strong> Only the ampersand in "Explore, Discover &amp; Engage" and en dashes in date ranges ("May 22 – Sept 7"). No arrows, checkmarks or bullets typed as characters — bullets are drawn as small Meadow dots.</p>
+<p><strong>Things the brand does not say.</strong> No urgency marketing ("Don't miss out!"), no exclamation stacking, no corporate abstraction ("leverage", "solutions", "experiences that delight"). Sponsor recognition is always factual and never effusive.</p>
+
+<h2>Visual foundations</h2>
+<h3>Colour</h3>
+<p>The palette is warm, earthed and low-saturation, with one hot accent. Limestone (<code>#F2EDE7</code>) is the page — not white. Every surface is a tint of it.</p>
+<ul>
+<li><strong>Primary / institutional:</strong> Evergreen <code>#293A2E</code> · Meadow <code>#8EA937</code> · Sunstone <code>#F68A3D</code> · Limestone <code>#F2EDE7</code>.</li>
+<li><strong>Four seasonal palettes</strong> swap the dark anchor and the two supporting hues while Sunstone stays constant: Spring (Riverleaf <code>#004A4A</code>, Petal Pink, Citrus) · Summer (Evergreen, Meadow, Mist) · Autumn (Red Oak <code>#380808</code>, Honey, Koi) · Winter (Solstice <code>#2B1F4A</code>, Frost, Lilac). Set <code>data-season="spring|summer|fall|winter"</code> on any ancestor. Only the website navigation logo changes colour seasonally; the logo is otherwise fixed.</li>
+<li><strong>Two background colours per piece, maximum.</strong> The guidelines' contrast floor is 4.5:1 for everything and 6.5:1 for signage; every palette page in the PDF prints its measured ratio.</li>
+<li>Feedback colours (success / warning / error) exist in the production CSS for UI only. They are not brand colours and should never appear in campaign creative.</li>
+</ul>
+<h3>Type</h3>
+<p>Two families, strictly divided.</p>
+<ul>
+<li><strong>New Kansas</strong> (Adobe Fonts, family name <code>new-kansas</code>) — display only. Thin (100) is the default; Medium (500) weights one or two key words inside a headline. Used <strong>no more than once per printed side or digital block</strong>. Fallback: Georgia.</li>
+<li><strong>Satoshi</strong> — eyebrows, subheads, body, UI, buttons. Medium (500) is the body weight; Black (900) for emphasis. Fallback: Arial.</li>
+</ul>
+<p>Scale: 18px base, 1.215 modular ratio. Headlines 24–36pt for brochures/email/web, larger for signage. Subheads one-third to one-half the headline size. Body 8–10pt print, 14–18px digital. Leading: 1.2× for headlines and body, 1.0× for subheads. Tracking 0 everywhere except ALL CAPS, which gets a light open-out. Space below a headline ≥ half the headline's height; space between paragraphs = one line-height.</p>
+<h3>Layout &amp; spacing</h3>
+<p>Non-linear spacing scale on a 1rem unit (<code>--space-xxxxs</code> 3px → <code>--space-xxxxl</code> 344px). Content max width 80rem for editorial, 100rem for the header and full-bleed sections. Section padding is <code>--space-xl</code> (82px) vertically. Header is a fixed 85px bar with a hairline bottom rule; the announcement bar sits above it and is dismissible.</p>
+<h3>Backgrounds</h3>
+<p>Photography-first. Full-bleed hero images with a protection gradient; flat Limestone or Evergreen slabs everywhere else. The one recurring graphic device is the <strong>skeletal-leaf watermark</strong> — the leaf from the logo, drawn as veins, scaled to 300–440px, set at 10–20% opacity in <code>--color-bg-dark</code> with <code>mix-blend-mode: multiply</code>, and bled off an edge. No gradients as decoration (the only gradient in the production CSS is the white-to-Limestone wash behind the newsletter block and the black protection gradient on image captions). No repeating patterns. No noise or grain.</p>
+<h3>Photography</h3>
+<p>Natural light, no heavy filters, no stylised grading. Warm and green — Texas sun, deep foliage, limestone paths. A mix of wide landscape shots, mid-range candids of real guests, and macro plant detail. Diverse in ethnicity, age and family shape. Genuine expressions: joy, wonder, reflection, curiosity. Nothing posed, commercial or clinical.</p>
+<h3>Corners, borders, shadows</h3>
+<ul>
+<li>Radius base <code>0.375em</code>; cards use <code>--radius-xl</code> (≈18px at 16px root). Buttons and badges are always full pills (<code>30px</code> / <code>--radius-full</code>) — never squared.</li>
+<li>Borders are almost always <code>inset 0 0 0 1px</code> box-shadows rather than real borders, so they do not affect layout. Hairline rules in <code>--color-contrast-lower</code> separate accordion rows.</li>
+<li>Shadows are broad and very soft, five-stop stacks. Cards rest at <code>--shadow-xs</code> and lift to <code>--shadow-md</code> on hover. There is no heavy drop shadow anywhere in the system.</li>
+<li>Colour blocks (the event-branding device) have no border and no shadow — they read as slabs.</li>
+</ul>
+<h3>Motion &amp; states</h3>
+<ul>
+<li>Everything transitions at <code>all .2s ease</code>. Movement uses <code>--ease-out</code> <code>cubic-bezier(0.215, 0.61, 0.355, 1)</code>; <code>--ease-out-back</code> exists for the rare overshoot but is barely used. No bounce, no spring, no parallax.</li>
+<li><strong>Hover:</strong> solid buttons step one shade along their ramp (primary → primary-dark; accent → accent-light). Outline buttons darken their 1px ring. Cards raise their shadow and scale their image to 1.04 over 0.5s. Links underline.</li>
+<li><strong>Press:</strong> colour only. Nothing scales or shrinks on press.</li>
+<li><strong>Focus:</strong> a 2px outer ring in <code>--color-bg-darker</code>, with the inset border faded out so the two do not double up. Never the browser default outline.</li>
+<li><strong>Disabled:</strong> <code>opacity: .6</code> and <code>cursor: not-allowed</code>. No greying of the fill.</li>
+</ul>
+<h3>Transparency &amp; blur</h3>
+<p>Used sparingly and always over photography or colour: the newsletter form controls use a 10% primary-tinted fill with <code>backdrop-filter: blur(10px)</code>; the blurred card caption variant uses an 80% black panel with the same blur. Elsewhere transparency appears as <code>hsla(var(--color-x-h), …, .2)</code> tint fills on badges. Never blur over flat Limestone.</p>
+<h3>Protection gradients vs capsules</h3>
+<p>Caption text over imagery always sits on a linear black-to-transparent protection gradient, never on a capsule or scrim box. Capsules (pills) are reserved for buttons, badges and chips.</p>
+
+<h2>Iconography</h2>
+<p><strong>The set shipped here is FWBG's own</strong>, extracted from the production site as inline SVG and saved to <code>assets/icons/</code>. There is no icon font and no third-party icon library on the site — icons are hand-placed inline SVGs. Nothing has been substituted from a CDN.</p>
+<ul>
+<li><strong>Style:</strong> minimal line icons on a 16/20/24px grid, 1–2px stroke, <code>stroke="currentColor"</code>, <code>fill="none"</code>, mostly square or round caps. They are deliberately plain — the leaf mark carries all the brand personality, so the UI glyphs stay neutral.</li>
+<li><strong>UI glyphs:</strong> <code>chevron-left</code> / <code>chevron-right</code> / <code>chevron-down</code> (plus thin and plain weights for slideshow arrows), <code>close</code> in five sizes, <code>menu</code>, <code>arrow-right</code>, <code>arrow-slide-prev</code> / <code>arrow-slide-next</code>.</li>
+<li><strong>Weather glyphs:</strong> <code>weather-clear-day</code>, <code>weather-rain</code>, <code>weather-wind</code>, <code>weather-precipitation</code> — the homepage runs a live "Today's Weather" panel, which is a genuinely distinctive part of this product.</li>
+<li><strong>Social marks:</strong> solid, brand-accurate glyphs for Facebook, Instagram, LinkedIn, TikTok, X and YouTube.</li>
+<li><strong>Brand graphics:</strong> <code>promo-badge-starburst</code> (a 379px scalloped medallion used for promotional overlays on carousel cards), <code>logo-leaf.svg</code> (the large skeletal-leaf watermark), and the three logo lockups.</li>
+<li><strong>Wayfinding icons</strong> for the printed park map (parking, restroom, gift shop, restaurant, water fountain, picnic area, shuttle stop) are described in the guidelines but were <strong>not obtainable</strong> — they live in the print map artwork, not on the website. If you need them, send the map source file.</li>
+<li><strong>Emoji are never used.</strong> Unicode characters are not used as icons.</li>
+<li>The <code>Icon</code> component masks these SVGs with <code>currentColor</code> so they inherit text colour. Set its <code>base</code> prop to the relative path of <code>assets/icons</code>.</li>
+</ul>
+
+<h2>Index</h2>
+<h3>Root</h3>
+<ul>
+<li><code>styles.css</code> — the single entry point consumers link. <code>@import</code> list only.</li>
+<li><code>readme.md</code> — this file.</li>
+<li><code>SKILL.md</code> — Agent Skills wrapper so this folder works as a Claude Code skill.</li>
+<li><code>thumbnail.html</code> — homepage tile.</li>
+</ul>
+<h3>tokens/</h3>
+<p><code>fonts.css</code> (Typekit import + self-hosted Satoshi <code>@font-face</code>) · <code>colors.css</code> · <code>seasons.css</code> (the four seasonal scopes + <code>[data-theme="dark"]</code>) · <code>typography.css</code> · <code>spacing.css</code> · <code>shape.css</code> (radius, shadow, easing, icon sizes) · <code>base.css</code> (element defaults).</p>
+<h3>assets/</h3>
+<ul>
+<li><code>logo-primary.svg</code>, <code>logo-reversed.svg</code>, <code>logo-mark.svg</code> (duo-leaf bug), <code>logo-leaf.svg</code> (skeletal-leaf watermark)</li>
+<li><code>fonts/</code> — Satoshi Light/Regular/Italic/Medium/MediumItalic/Bold/Black/Variable (woff2)</li>
+<li><code>icons/</code> — 29 SVGs, listed under Iconography above</li>
+<li><code>images/</code> — 18 production photographs from fwbg.org</li>
+</ul>
+<h3>components/</h3>
+<p><strong>core/</strong> — <code>Button</code>, <code>IconButton</code>, <code>Icon</code>, <code>Logo</code>, <code>LeafMotif</code>, <code>Eyebrow</code>, <code>SectionHeading</code>, <code>Badge</code>, <code>Chip</code><br>
+<strong>cards/</strong> — <code>MediaCard</code>, <code>EventCard</code>, <code>PriceCard</code><br>
+<strong>forms/</strong> — <code>Input</code>, <code>Select</code>, <code>Textarea</code>, <code>Checkbox</code>, <code>Radio</code><br>
+<strong>navigation/</strong> — <code>AnnouncementBar</code>, <code>SiteHeader</code>, <code>Accordion</code><br>
+<strong>layout/</strong> — <code>Section</code>, <code>ColorBlock</code></p>
+<p>Each directory has a <code>@dsCard</code> HTML showing its variants. Each component has a <code>.d.ts</code> props contract and a <code>.prompt.md</code> usage note.</p>
+<h4>Intentional additions</h4>
+<p>(no direct counterpart in the source, added because the source's approach does not survive reuse)</p>
+<ul>
+<li><code>Icon</code> — the site hand-inlines SVG per use; a wrapper was needed so the shipped set is reachable.</li>
+<li><code>LeafMotif</code> — the watermark is applied ad hoc as <code>.bg-leaf</code> in several places; wrapped for reuse.</li>
+<li><code>SectionHeading</code> and <code>Eyebrow</code> — the eyebrow/headline/standfirst stack is a hard-coded pattern repeated across the site rather than a named component.</li>
+<li><code>ColorBlock</code> — the event-branding colour block is defined in the guidelines as a layout device but has no web implementation.</li>
+</ul>
+<h3>guidelines/</h3>
+<p>22 specimen cards covering the primary and four seasonal palettes, semantic ramps, surfaces, text ramp, feedback colours, display and body type, the type scale, the eyebrow stack, spacing scale and spacing in use, radii, elevation, logo lockups, the leaf watermark, the icon set, photography, and interaction states.</p>
+<h3>ui_kits/</h3>
+<ul>
+<li><code>website/</code> — click-through recreation of fwbg.org: homepage, gardens listing, event detail, membership.</li>
+<li><code>event_creative/</code> — the modular event layout system: billboard, social post, rack card, email.</li>
+</ul>
+
+<h2>Known gaps</h2>
+<ul>
+<li><strong>New Kansas</strong> is served from FWBG's Adobe Fonts kit (<code>https://use.typekit.net/pgm0cqm.css</code>), which is domain-restricted by Adobe. It renders here and on fwbg.org; it may fall back to Georgia in other contexts. Licensed font files cannot be self-hosted.</li>
+<li>The <strong>primary stacked</strong> and <strong>single-colour / embroidery</strong> logo lockups shown in the guidelines were not published to the website and could not be extracted from the PDF (they are vector artwork with no embedded raster). Only horizontal primary, reversed and the leaf bug are here.</li>
+<li><strong>Departmental logo lockups</strong> (BRIT, Giving Circle) follow a fixed architecture described in the guidelines; request them from marketing@fwbg.org rather than constructing them.</li>
+<li>The <strong>park map wayfinding icon set</strong> is not included (see Iconography).</li>
+</ul>
+</doc-page>
+<script src="doc-page.js"></script>
+</body></html>
