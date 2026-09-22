@@ -1,13 +1,11 @@
 /* =================================================================
    The Begonia Collection — FWBG Design System build
-   Tokens: fwbg/tokens/*  ·  Display: New Kansas (Georgia fallback)
-   UI: Satoshi  ·  Surfaces: Limestone  ·  Accent: Evergreen/Sunstone
+   Tokens loaded separately by the HTML shell (tokens-fwbg.css or
+   tokens-unbranded.css) before this file, so both token packs can
+   publish side by side without touching this stylesheet.
+   Display: New Kansas (Georgia fallback) · UI: Satoshi
+   Surfaces: Limestone · Accent: Evergreen/Sunstone
    ================================================================= */
-@import url("../fwbg/tokens/colors.css");
-@import url("../fwbg/tokens/fonts.css");
-@import url("../fwbg/tokens/spacing.css");
-@import url("../fwbg/tokens/shape.css");
-@import url("../fwbg/tokens/seasons.css");
 
 :root{
   --paper:var(--color-bg);
