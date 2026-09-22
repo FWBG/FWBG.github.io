@@ -223,7 +223,7 @@ function App() {
       <main className="content">
         {tab === "overview" ? (
           <div className="dashgrid">
-            <Panel title="Growth habit" sub="The morphological architecture of the collection" wide
+            <Panel title="Horticultural types" sub="The morphological architecture of the collection" wide
               action={<span className="panel__hint">click to filter</span>}>
               <HabitChart rows={filtered} onPick={pick} active={filters._habit} />
             </Panel>
