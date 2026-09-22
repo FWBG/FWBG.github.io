@@ -11,7 +11,7 @@ const COLUMNS = [
   { key: "AccNoFull",       label: "Accession",    mono: true },
   { key: "AccYear",         label: "Year",         mono: true, num: true },
   { key: "MaterialType",    label: "Material" },
-  { key: "ItemLocationCode",label: "Location",     mono: true },
+  { key: "ItemLocationCode",label: "Location",     mono: true, location: true },
   { key: "ItemStatusCode",  label: "Status",       chip: "status" },
 ];
 
@@ -89,6 +89,7 @@ function DataTable({ rows, sort, onSort, onOpen, openId, onPick, speciesFilter }
                             ><em>{v}</em></button>
                           : <span className="cell-empty">—</span>)
                       : c.italic ? <span className="taxon"><span className="taxon__g">B.</span> <em>{v}</em></span>
+                      : c.location ? (v ? locationLabel(v) : <span className="cell-empty">—</span>)
                       : (v || <span className="cell-empty">—</span>)}
                   </td>
                 );

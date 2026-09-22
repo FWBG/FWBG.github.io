@@ -50,9 +50,9 @@ const FIELD_LABELS = {
 
 function locationLabel(code) {
   if (!code) return "Unassigned";
-  if (code === "CGH") return "Conservatory GH · general";
+  if (code === "CGH") return "General";
   const m = code.match(/^CGH_?(\d+)/);
-  if (m) return "Conservatory GH · Bay " + parseInt(m[1], 10);
+  if (m) return "Table " + parseInt(m[1], 10);
   return code;
 }
 

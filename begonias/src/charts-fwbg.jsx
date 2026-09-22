@@ -10,15 +10,16 @@ const { useMemo } = React;
 function BarList({ rows, total, max, active, onPick, field, accent }) {
   return (
     <div className="barlist">
-      {rows.map(([label, count, color, sub]) => {
+      {rows.map(([value, count, color, sub, display]) => {
+        const label = display ?? value;
         const pct = max ? (count / max) * 100 : 0;
-        const isActive = active === label;
+        const isActive = active === value;
         const dim = active && !isActive;
         return (
           <button
-            key={label}
+            key={value}
             className={"barrow" + (isActive ? " is-active" : "") + (dim ? " is-dim" : "")}
-            onClick={() => onPick(field, label)}
+            onClick={() => onPick(field, value)}
             title={sub || label}
           >
             <span className="barrow__label">{label}</span>
@@ -142,18 +143,35 @@ function LocationChart({ rows, onPick, active }) {
   const data = useMemo(() => {
     const m = countBy(rows, r => r.ItemLocationCode);
     return [...m.entries()]
-      .map(([code, n]) => [code, n, "#3B5443", locationLabel(code)])
+      .map(([code, n]) => [code, n, "#3B5443", code, locationLabel(code)])
       .sort((a, b) => b[1] - a[1])
       .slice(0, 10);
   }, [rows]);
   const max = Math.max(1, ...data.map(d => d[1]));
   return (
     <BarList
-      rows={data.map(d => [d[0], d[1], d[2], d[3]])}
+      rows={data}
       total={rows.length} max={max} active={active}
       onPick={onPick} field="ItemLocationCode"
     />
   );
+}
+
+// --- Country of origin bars (top 10, all provenance) ---
+function CountryChart({ rows }) {
+  const { data, total } = useMemo(() => {
+    const m = new Map();
+    for (const r of rows) {
+      const c = countryFromLocality(r.LocalityFull);
+      if (!c) continue;
+      m.set(c, (m.get(c) || 0) + 1);
+    }
+    const all = [...m.entries()].map(([c, n]) => [c, n, "#004A4A"]).sort((a, b) => b[1] - a[1]);
+    return { data: all.slice(0, 10), total: all.reduce((s, d) => s + d[1], 0) };
+  }, [rows]);
+  if (!data.length) return <p className="consv__empty">No georeferenced origins in the current selection.</p>;
+  const max = Math.max(1, ...data.map(d => d[1]));
+  return <BarList rows={data} total={total} max={max} active={null} onPick={() => {}} field="_country" />;
 }
 
 // --- Material type bars ---
@@ -180,6 +198,7 @@ const COUNTRIES = {
   USA: "United States", BRA: "Brazil", COL: "Colombia", PER: "Peru", PHL: "Philippines",
   MYS: "Malaysia", IDN: "Indonesia", THA: "Thailand", BOL: "Bolivia", CRI: "Costa Rica",
   PAN: "Panama", GTM: "Guatemala", HND: "Honduras", NIC: "Nicaragua",
+  MDG: "Madagascar", CMR: "Cameroon", PNG: "Papua New Guinea", TZA: "Tanzania",
 };
 function countryFromLocality(loc) {
   if (!loc) return null;
@@ -340,5 +359,5 @@ function SourcesChart({ rows, onPick, active }) {
 Object.assign(window, {
   HabitChart, ProvenanceDonut, TimelineChart, LocationChart, MaterialChart,
   ProvenanceTiers, WildRegister, OriginsChart, CollectorsChart, countryFromLocality,
-  SourcesChart,
+  SourcesChart, CountryChart,
 });

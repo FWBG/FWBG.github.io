@@ -162,8 +162,8 @@ function App() {
         </div>
         <h1 className="masthead__title">The <em>Begonia</em> Collection</h1>
         <p className="masthead__lede">
-          A nationally significant assemblage of the genus <em>Begonia</em> — explore every accession by
-          growth habit, origin, and place in the conservatory.
+          An internationally significant and nationally accredited collection of the genus <em>Begonia</em> — explore every accession by
+          growth habit, origin, and place in the collection.
         </p>
         <div className="statbar">
           <Stat num={META.items?.toLocaleString()} label="Living plants" sub={(META.alive ?? 0).toLocaleString() + " in collection"} />
@@ -236,8 +236,12 @@ function App() {
               <TimelineChart rows={filtered} onPick={pick} active={filters.AccYear} />
             </Panel>
 
-            <Panel title="In the conservatory" sub="Top greenhouse bays by plant count">
+            <Panel title="In the collection" sub="Top greenhouse bays by plant count">
               <LocationChart rows={filtered} onPick={pick} active={filters.ItemLocationCode} />
+            </Panel>
+
+            <Panel title="Country of origin" sub="Top 10 countries by georeferenced locality">
+              <CountryChart rows={filtered} />
             </Panel>
 
             <Panel title="Material received" sub="Form in which each accession arrived" wide>
