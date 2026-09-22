@@ -15,11 +15,12 @@ automatically.
 | --- | --- |
 | `index.html` | Site homepage |
 | `design-system/` | FWBG brand design system (tokens, components, guide) — copied in from the design-system skill/source, not built by CI |
+| `llms.txt`, `llms-full.txt` | LLM-oriented site map, pointing at pages here and their source repos |
 | `.nojekyll`, `README.md`, `TODO.md` | Repo housekeeping |
 
 Commit history confirms this: `first commit`, `Add basic homepage using FWBG design system`,
-`new text and links`, `Add .nojekyll to skip Jekyll processing`, and the `TODO` about `llms.txt`
-are all authored directly, not by the publishing bot.
+`new text and links`, `Add .nojekyll to skip Jekyll processing` are all authored directly, not by
+the publishing bot.
 
 ## 2. Automated: `begonias/` from FWBG/living_collections
 
@@ -65,11 +66,15 @@ pipeline — 7 of the repo's 13 total commits.
 This publishes the `collections/` folder: an index page plus a shared copy of the `fwbg/`
 design-system assets (fonts, tokens, logos) bundled alongside it.
 
-## Open item
+## `llms.txt`
 
-`TODO.md` flags adding an `llms.txt` (and `llms-full.txt`) at the root, meant to point at
-resources published across these different repos so an LLM crawler has one entry point into
-everything fwbg.github.io aggregates. Not yet built.
+`llms.txt` and `llms-full.txt` at the repo root give LLM crawlers a single entry point into
+everything fwbg.github.io aggregates — pages, the pipelines that publish them, links back to the
+source repos above, and (in `llms-full.txt`) crawling guidance for third-party collection portals
+linked from the Collections page (e.g. preferring a Symbiota collection's Darwin Core Archive
+download over crawling its search pages). Maintained by manual commit, same as `index.html`;
+update them whenever a page is added, moved, its source repo changes, or a linked external portal's
+bulk-access endpoints change.
 
 ## Sources
 

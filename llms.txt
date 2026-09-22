@@ -1,0 +1,33 @@
+# Fort Worth Botanic Garden - Digital
+
+> Home for a growing collection of digital tools and resources from the Fort Worth Botanic
+> Garden (FWBG), including datasets, dashboards, applications, and design assets. Content is
+> aggregated onto this site (fwbg.github.io) from several source repositories via automated
+> and manual publishing — see PUBLISHING.md for how each part gets here.
+
+This site mixes hand-maintained scaffolding with pages auto-published from sibling repos. Treat
+`begonias/` and `collections/` as generated mirrors, not editable sources — their source repos
+are linked below.
+
+## Pages
+
+- [Home](https://fwbg.github.io/index.html): Landing page with links to FWBG and BRIT GitHub organizations.
+- [Begonia Collection dashboard](https://fwbg.github.io/begonias/index.html): Interactive React dashboard exploring the Begonia collection (charts, sortable table). Auto-published from [FWBG/living_collections](https://github.com/FWBG/living_collections).
+- [FWBG Collections](https://fwbg.github.io/collections/index.html): Index of Fort Worth Botanic Garden and BRIT digital collections. Auto-published from [FWBG/collections](https://github.com/FWBG/collections).
+
+## Design system
+
+- [FWBG Design Guide](https://fwbg.github.io/design-system/FWBG%20Design%20Guide.html): Brand design system reference — tokens, components, usage guidance. Shared visual language reused by the pages above.
+
+## Source repositories
+
+- [FWBG/FWBG.github.io](https://github.com/FWBG/FWBG.github.io): This site itself (publish target; also hosts the manually-maintained homepage and design system).
+- [FWBG/living_collections](https://github.com/FWBG/living_collections): Source for the Begonia dashboard published to `/begonias/`.
+- [FWBG/collections](https://github.com/FWBG/collections): Source for the collections index published to `/collections/`.
+- [FWBG on GitHub](https://github.com/FWBG): Full list of FWBG repositories.
+- [BRIT on GitHub](https://github.com/BRITorg/): Full list of Botanical Research Institute of Texas repositories.
+
+## Optional
+
+- [PUBLISHING.md](https://fwbg.github.io/PUBLISHING.md): Detailed explanation of the three mechanisms that feed content into this site.
+- [llms-full.txt](https://fwbg.github.io/llms-full.txt): Includes "External collection portals — crawling guidance" — before crawling a Symbiota herbarium link, UNT Portal to Texas History link, or other third-party collection system linked from the Collections page, check there for a bulk-data endpoint (e.g. Darwin Core Archive) instead of paging through search results.
