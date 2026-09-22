@@ -1,0 +1,6 @@
+/* Claude Design "fwbg-unbranded" token pack — same custom property names, neutral values. Drop-in swap for tokens-fwbg.css. */
+@import url("../fwbg-unbranded/tokens/colors.css");
+@import url("../fwbg-unbranded/tokens/fonts.css");
+@import url("../fwbg-unbranded/tokens/spacing.css");
+@import url("../fwbg-unbranded/tokens/shape.css");
+@import url("../fwbg-unbranded/tokens/seasons.css");

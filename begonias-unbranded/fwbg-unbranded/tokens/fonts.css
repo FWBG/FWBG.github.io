@@ -1,0 +1,2 @@
+/* No web fonts. Every font token resolves to the system sans stack (see typography.css).
+   Kept as a file so the styles.css import shape matches FWBG Design System. */
