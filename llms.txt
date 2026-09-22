@@ -3,7 +3,7 @@
 > Home for a growing collection of digital tools and resources from the Fort Worth Botanic
 > Garden (FWBG), including datasets, dashboards, applications, and design assets. Content is
 > aggregated onto this site (fwbg.github.io) from several source repositories via automated
-> and manual publishing — see PUBLISHING.md for how each part gets here.
+> and manual publishing.
 
 This site mixes hand-maintained scaffolding with pages auto-published from sibling repos. Treat
 `begonias/` and `collections/` as generated mirrors, not editable sources — their source repos

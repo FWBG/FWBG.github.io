@@ -1,5 +1,8 @@
 # FWBG.github.io
 
+Source for [fwbg.github.io](https://fwbg.github.io/), home for a growing collection of digital
+tools and resources from the Fort Worth Botanic Garden (FWBG) — datasets, dashboards,
+applications, and design assets.
+
 See [PUBLISHING.md](PUBLISHING.md) for how content gets published to this site (manual commits vs.
-the automated `begonias/` and `collections/` sync pipelines), or the live doc:
-[Publishing Paths to fwbg.github.io](https://claude.ai/artifact/3vAYakPy3gQyBsmmL7Q1uy).
+the automated `begonias/` and `collections/` sync pipelines).
