@@ -10,6 +10,9 @@ const META = window.__BEGONIA_META || {};
 // the masthead so it doesn't carry the real logo/watermark. index-unbranded.html
 // (unbranded tokens, original masthead) leaves this unset.
 const UNBRANDED = window.__DS_VARIANT === "unbranded";
+// Set only by index-embed.html — the host page supplies its own title, so the
+// masthead (logo, title, lede, stat bar) is dropped entirely rather than simplified.
+const EMBED = window.__DS_VARIANT === "embed";
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "season": "summer",
@@ -156,25 +159,27 @@ function App() {
   }
 
   return (
-    <div className="app" style={rootStyle} data-season={t.season}>
-      <header className="masthead">
-        {!UNBRANDED && <img className="masthead__leaf" src={LOGO_LEAF} alt="" aria-hidden="true" />}
-        <div className="masthead__brand">
-          {UNBRANDED ? (
-            <div className="masthead__wordmark">Fort Worth Botanic Garden</div>
-          ) : (
-            <>
-              <img className="masthead__logo" src={LOGO_PRIMARY} alt="Fort Worth Botanic Garden" />
-              <div className="masthead__rule"></div>
-            </>
-          )}
-          <div className="masthead__eyebrow">Living Collections</div>
-        </div>
-        <h1 className="masthead__title">The <em>Begonia</em> Collection</h1>
-        <p className="masthead__lede">
-          An internationally significant and nationally accredited collection of the genus <em>Begonia</em> — explore every accession by
-          growth habit, origin, and place in the collection.
-        </p>
+    <div className={"app" + (EMBED ? " app--embed" : "")} style={rootStyle} data-season={t.season}>
+      <header className={"masthead" + (EMBED ? " masthead--embed" : "")}>
+        {!EMBED && <>
+          {!UNBRANDED && <img className="masthead__leaf" src={LOGO_LEAF} alt="" aria-hidden="true" />}
+          <div className="masthead__brand">
+            {UNBRANDED ? (
+              <div className="masthead__wordmark">Fort Worth Botanic Garden</div>
+            ) : (
+              <>
+                <img className="masthead__logo" src={LOGO_PRIMARY} alt="Fort Worth Botanic Garden" />
+                <div className="masthead__rule"></div>
+              </>
+            )}
+            <div className="masthead__eyebrow">Living Collections</div>
+          </div>
+          <h1 className="masthead__title">The <em>Begonia</em> Collection</h1>
+          <p className="masthead__lede">
+            An internationally significant and nationally accredited collection of the genus <em>Begonia</em> — explore every accession by
+            growth habit, origin, and place in the collection.
+          </p>
+        </>}
         <div className="statbar">
           <Stat num={META.items?.toLocaleString()} label="Living plants" sub={(META.alive ?? 0).toLocaleString() + " in collection"} />
           <Stat num={META.uniqTaxa?.toLocaleString()} label="Distinct taxa" sub="species, hybrids & cultivars" />
