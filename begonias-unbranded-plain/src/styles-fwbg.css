@@ -141,7 +141,7 @@ a:hover{color:var(--link-color-hover)}
 .tl__year{font-size:calc(11px * var(--fs));color:var(--ink-soft);font-variant-numeric:tabular-nums}
 
 /* ---------- Table ---------- */
-.tablewrap{background:var(--card);border-radius:var(--card-radius);box-shadow:var(--shadow);overflow:hidden}
+.tablewrap{background:var(--card);border-radius:var(--card-radius);box-shadow:var(--shadow);overflow-x:auto;overflow-y:hidden}
 .dtable{width:100%;border-collapse:collapse;font-size:calc(13.5px * var(--fs))}
 .dtable thead th{position:sticky;top:57px;z-index:5;background:var(--color-bg-light);text-align:left;font-size:calc(11.5px * var(--fs));text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);font-weight:700;padding:13px 16px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none;transition:color .2s ease}
 .dtable thead th:hover{color:var(--ink)}
