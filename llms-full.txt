@@ -1,7 +1,7 @@
 # Fort Worth Botanic Garden - Digital
 
 > Home for a growing collection of digital tools and resources from the Fort Worth Botanic
-> Garden (FWBG), including datasets, dashboards, applications, and design assets.
+> Garden (FWBG), including datasets, dashboards, and applications.
 
 This file expands on llms.txt with the full detail an LLM needs to understand what this site
 is, what each part contains, and — critically — where each part actually comes from, since most
@@ -13,7 +13,7 @@ fwbg.github.io aggregates digital resources from the Fort Worth Botanic Garden a
 Botanical Research Institute of Texas (BRIT). It is fed by three distinct mechanisms:
 
 1. **Manual direct commits** to this repo's `main` branch — used for the site's own scaffolding
-   (`index.html`, `design-system/`, `.nojekyll`, `README.md`, `PUBLISHING.md`). Nothing
+   (`index.html`, `.nojekyll`, `README.md`, `PUBLISHING.md`). Nothing
    generates or syncs these files automatically.
 2. **Automated publish of `/begonias/`** from a GitHub Actions workflow in
    [FWBG/living_collections](https://github.com/FWBG/living_collections)
@@ -37,16 +37,15 @@ for the Begonia dashboard lives in `FWBG/living_collections` (dashboard files un
 
 Landing page for the site. States the site's purpose (digital tools and resources: datasets,
 dashboards, applications) and links out to the two GitHub organizations behind the content:
-[FWBG](https://github.com/FWBG) and [BRIT](https://github.com/BRITorg/). Uses the FWBG design
-system for styling. Manually maintained — not generated.
+[FWBG](https://github.com/FWBG) and [BRIT](https://github.com/BRITorg/). Manually maintained —
+not generated.
 
 ### Begonia Collection dashboard — `/begonias/`
 
 Interactive dashboard for exploring the Begonia collection: charts (`src/charts-fwbg.jsx`), a
 sortable/filterable data table (`src/table-fwbg.jsx`), and a tweaks panel for adjusting the view
 (`tweaks-panel.jsx`), built as a client-rendered React app (React 18 + Babel standalone loaded
-from CDN, no build step) reading data from `data/collections-v2.js`. Styled with the shared FWBG
-design tokens (`fwbg/tokens`, `fwbg/assets`).
+from CDN, no build step) reading data from `data/collections-v2.js`.
 
 - **Source of truth:** [FWBG/living_collections](https://github.com/FWBG/living_collections)
 - **Published by:** `.github/workflows/publish-begonia.yml`, triggered on pushes to
@@ -56,8 +55,7 @@ design tokens (`fwbg/tokens`, `fwbg/assets`).
 ### FWBG Collections — `/collections/`
 
 Index page describing the many collections and their digital counterparts at FWBG and BRIT, with
-links out to each. Bundles a shared copy of the `fwbg/` design-system assets (fonts, tokens,
-logos) alongside its own `index.html` and `styles.css`.
+links out to each, alongside its own `index.html` and `styles.css`.
 
 - **Source of truth:** [FWBG/collections](https://github.com/FWBG/collections) (not mirrored
   locally in this workspace as of 2026-09-22; inferred from commit pattern)
@@ -110,15 +108,6 @@ Not verified for bulk-access endpoints — the txarchives.org fetch was blocked 
 check during this check, and the others weren't checked. Treat as ordinary browse targets unless
 confirmed otherwise; don't assume an API exists.
 
-## Design system — `/design-system/`
-
-The FWBG brand design system: design tokens (`tokens/colors.css`, `tokens/typography.css`,
-`tokens/spacing.css`, `tokens/shape.css`, `tokens/fonts.css`, `tokens/seasons.css`), a compiled
-`styles.css` / `_ds_bundle.js`, logo and image assets, and a browsable guide
-(`FWBG Design Guide.html`). Copied in from the design-system skill/source and maintained by
-manual commit, not built by CI. Both `begonias/` and `collections/` reuse a copy of these tokens
-and assets (`fwbg/tokens`, `fwbg/assets`) to stay visually consistent with the rest of the site.
-
 ## Source repositories
 
 | Repo | Role |
@@ -134,6 +123,6 @@ and assets (`fwbg/tokens`, `fwbg/assets`) to stay visually consistent with the r
 - If asked to change something visible on fwbg.github.io, first check whether the path is under
   `/begonias/` or `/collections/` — if so, the change belongs in the source repo
   (`living_collections` or `collections`), not here.
-- `index.html` and `design-system/` are the only parts of this repo safe to edit directly.
+- `index.html` is the only part of this repo safe to edit directly.
 - This site aggregates content across repositories; it does not itself contain the underlying
   botanical/collections datasets — those live in the source repos linked above.

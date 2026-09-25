@@ -1,7 +1,7 @@
 # Fort Worth Botanic Garden - Digital
 
 > Home for a growing collection of digital tools and resources from the Fort Worth Botanic
-> Garden (FWBG), including datasets, dashboards, applications, and design assets. Content is
+> Garden (FWBG), including datasets, dashboards, and applications. Content is
 > aggregated onto this site (fwbg.github.io) from several source repositories via automated
 > and manual publishing.
 
@@ -15,13 +15,9 @@ are linked below.
 - [Begonia Collection dashboard](https://fwbg.github.io/begonias/index.html): Interactive React dashboard exploring the Begonia collection (charts, sortable table). Auto-published from [FWBG/living_collections](https://github.com/FWBG/living_collections).
 - [FWBG Collections](https://fwbg.github.io/collections/index.html): Index of Fort Worth Botanic Garden and BRIT digital collections. Auto-published from [FWBG/collections](https://github.com/FWBG/collections).
 
-## Design system
-
-- [FWBG Design Guide](https://fwbg.github.io/design-system/FWBG%20Design%20Guide.html): Brand design system reference — tokens, components, usage guidance. Shared visual language reused by the pages above.
-
 ## Source repositories
 
-- [FWBG/FWBG.github.io](https://github.com/FWBG/FWBG.github.io): This site itself (publish target; also hosts the manually-maintained homepage and design system).
+- [FWBG/FWBG.github.io](https://github.com/FWBG/FWBG.github.io): This site itself (publish target; also hosts the manually-maintained homepage).
 - [FWBG/living_collections](https://github.com/FWBG/living_collections): Source for the Begonia dashboard published to `/begonias/`.
 - [FWBG/collections](https://github.com/FWBG/collections): Source for the collections index published to `/collections/`.
 - [FWBG on GitHub](https://github.com/FWBG): Full list of FWBG repositories.
