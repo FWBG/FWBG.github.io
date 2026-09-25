@@ -37,8 +37,14 @@
 <script type="text/babel" src="src/table-fwbg.jsx"></script>
 <script type="text/babel" src="src/app-fwbg.jsx"></script>
 <script>
-  const sendHeight = () =>
-    parent.postMessage({ begoniaHeight: document.documentElement.scrollHeight }, "https://fwbg.org");
+  // Allowed parent origins for the height-resize handshake — production and the
+  // WP Engine staging alias. postMessage only actually delivers to whichever of
+  // these matches the parent's real origin, so listing both is safe.
+  const RESIZE_TARGET_ORIGINS = ["https://fwbg.org", "https://fwbg2025.wpenginepowered.com"];
+  const sendHeight = () => {
+    const height = document.documentElement.scrollHeight;
+    RESIZE_TARGET_ORIGINS.forEach(origin => parent.postMessage({ begoniaHeight: height }, origin));
+  };
   new ResizeObserver(sendHeight).observe(document.body);
   window.addEventListener("load", sendHeight);
 </script>
