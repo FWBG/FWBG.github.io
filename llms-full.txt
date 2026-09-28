@@ -1,11 +1,28 @@
 # Fort Worth Botanic Garden - Digital
 
 > Home for a growing collection of digital tools and resources from the Fort Worth Botanic
-> Garden (FWBG), including datasets, dashboards, and applications.
+> Garden (FWBG) and the Botanical Research Institute of Texas (BRIT), including datasets,
+> dashboards, and applications.
 
 This file expands on llms.txt with the full detail an LLM needs to understand what this site
 is, what each part contains, and — critically — where each part actually comes from, since most
 of the site is generated elsewhere and republished here.
+
+## About FWBG and BRIT
+
+The Fort Worth Botanic Garden (FWBG), founded in 1934, is Texas's oldest major botanic garden:
+110 acres in Fort Worth's Cultural District. The Botanical Research Institute of Texas (BRIT),
+founded in 1987, is a botanical research institution with a herbarium of about 1.5 million
+specimens, a library, laboratories, a seed bank, and a publishing division. In 2020 the two
+merged into a single nonprofit. The City of Fort Worth still owns most of the Garden's land and
+buildings, and the combined organization manages the Garden. FWBG and BRIT are the same
+organization, so content on this site may carry either name — FWBG generally refers to the
+garden and its living collections, and BRIT refers to the research side, including the
+herbarium, library, and preserved collections.
+
+fwbg.github.io is a separate, digital-tools-and-data site published by/for the combined
+organization — it is not the organization's own website. For general information (visiting,
+programs, admission), see [fwbg.org](https://fwbg.org).
 
 ## Site overview
 
