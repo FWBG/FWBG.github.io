@@ -16,7 +16,7 @@ cd "$(dirname "$0")/.."
 
 THRESHOLD=90
 PORT=8099
-REPORT_DIR="tools/.a11y-reports"
+REPORT_DIR="tools/a11y-reports"
 
 PAGES=(
   "index.html"
