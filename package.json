@@ -1,0 +1,12 @@
+{
+  "name": "fwbg-github-io-tools",
+  "private": true,
+  "description": "Dev tooling for auditing fwbg.github.io (accessibility, mobile UX). Not part of the published site.",
+  "scripts": {
+    "check:a11y": "bash tools/check-a11y-mobile.sh"
+  },
+  "devDependencies": {
+    "http-server": "14.1.1",
+    "lighthouse": "13.5.0"
+  }
+}
