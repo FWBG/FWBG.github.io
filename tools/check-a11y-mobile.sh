@@ -58,13 +58,14 @@ for page in "${PAGES[@]}"; do
     continue
   fi
 
-  out_json="$REPORT_DIR/$(echo "$page" | tr '/' '_').json"
+  out_base="$REPORT_DIR/$(echo "$page" | tr '/.' '__')"
+  out_json="${out_base}.report.json"
 
   npx --yes lighthouse "http://localhost:$PORT/$page" \
     --emulated-form-factor=mobile \
     --only-categories=accessibility,best-practices \
-    --output=json \
-    --output-path="$out_json" \
+    --output=json,html \
+    --output-path="$out_base" \
     --chrome-flags="--headless=new" \
     --quiet >/dev/null 2>&1 || {
       printf "  %-42s %8s %8s\n" "$page" "ERROR" "ERROR"
@@ -84,8 +85,8 @@ for page in "${PAGES[@]}"; do
 done
 
 echo
-echo "Full Lighthouse JSON reports saved under $REPORT_DIR/ (gitignored)."
-echo "Open a report's 'audits' section for the specific elements/rules behind a low score."
+echo "Full Lighthouse reports (JSON + HTML) saved under $REPORT_DIR/ (gitignored)."
+echo "Open a page's *.report.html in a browser for the specific elements/rules behind a low score."
 echo
 
 if [[ "$failing" -eq 0 ]]; then
