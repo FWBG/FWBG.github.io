@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fort Worth Botanic Garden in 3D</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f7f4ed; --paper-2:#ece6da; --ink:#3c2f2c; --ink-soft:#6b5d58;
+  --bark:#4a2320; --marigold:#e9822f; --leaf:#6f8f62; --line:rgba(60,47,44,.16);
+  --shadow:0 6px 24px rgba(40,30,20,.18);
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#27231f; --paper-2:#332e29; --ink:#f1ebe1; --ink-soft:#c4b8aa;
+    --bark:#8a3d35; --line:rgba(241,235,225,.16); --shadow:0 6px 24px rgba(0,0,0,.45);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#27231f; --paper-2:#332e29; --ink:#f1ebe1; --ink-soft:#c4b8aa;
+  --bark:#8a3d35; --line:rgba(241,235,225,.16); --shadow:0 6px 24px rgba(0,0,0,.45);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html,body{height:100%;margin:0;overflow:hidden;background:#cfe4ee}
+body{font-family:"Jost","Futura","Century Gothic","Avenir Next",system-ui,sans-serif;color:var(--ink)}
+canvas#scene{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;outline:none}
+
+.panel{position:fixed;left:16px;top:calc(16px + env(safe-area-inset-top,0px));
+  background:var(--paper);border-radius:14px;box-shadow:var(--shadow);
+  padding:14px 16px 16px;width:min(300px,calc(100vw - 32px));z-index:5}
+.title{margin:-6px 0 12px;font-weight:400;font-size:14px;color:var(--ink-soft)}
+.name{margin:0 0 10px;font-weight:600;font-size:22px;line-height:1.1;letter-spacing:-.005em}
+.seg{display:flex;background:var(--paper-2);border-radius:999px;padding:3px;gap:3px}
+.seg button{flex:1;border:0;background:transparent;color:var(--ink);font:inherit;font-size:15px;font-weight:500;
+  padding:7px 10px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--bark);color:#fff}
+.seg button:focus-visible,select:focus-visible,.pad button:focus-visible,.chip:focus-visible{outline:2px solid var(--marigold);outline-offset:2px}
+label.go{display:block;margin-top:12px;font-size:13px;color:var(--ink-soft)}
+select{display:block;width:100%;margin-top:4px;font:inherit;font-size:15px;color:var(--ink);background:var(--paper-2);
+  border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:13px;padding:5px 10px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--leaf);border-color:var(--leaf);color:#fff}
+
+.hint{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));
+  background:var(--paper);color:var(--ink-soft);border-radius:999px;box-shadow:var(--shadow);
+  padding:8px 16px;font-size:14px;z-index:4;max-width:calc(100vw - 32px);text-align:center}
+.toast{position:fixed;left:50%;top:calc(18px + env(safe-area-inset-top,0px));transform:translate(-50%,-8px);opacity:0;
+  background:var(--bark);color:#fff;border-radius:999px;padding:8px 16px;font-weight:500;font-size:16px;
+  transition:opacity .25s,transform .25s;pointer-events:none;z-index:6;white-space:nowrap}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.pad{position:fixed;right:16px;bottom:calc(64px + env(safe-area-inset-bottom,0px));display:none;z-index:5;
+  grid-template-columns:repeat(3,52px);grid-template-rows:repeat(2,52px);gap:6px}
+.pad.on{display:grid}
+.pad button{border:0;border-radius:12px;background:var(--paper);color:var(--ink);box-shadow:var(--shadow);font-size:20px;cursor:pointer;touch-action:none;user-select:none;-webkit-user-select:none}
+.pad button:active,.pad button.held{background:var(--marigold);color:#fff}
+.pad .up{grid-column:2;grid-row:1}.pad .left{grid-column:1;grid-row:2}.pad .down{grid-column:2;grid-row:2}.pad .right{grid-column:3;grid-row:2}
+.loading{position:fixed;inset:0;display:grid;place-items:center;background:#dcebe4;z-index:10;transition:opacity .5s}
+.loading p{font-size:18px;color:#3c2f2c;margin:0}
+.loading.done{opacity:0;pointer-events:none}
+.error{position:fixed;inset:0;display:none;place-items:center;padding:24px;text-align:center;background:#dcebe4;color:#3c2f2c;z-index:11}
+@media (max-width:640px){
+  .panel{padding:10px 12px 12px;width:calc(100vw - 32px)}
+  .name{font-size:18px;margin-bottom:8px}
+  .hint{font-size:13px;bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+}
+</style>
+</head>
+<body>
+<canvas id="scene" tabindex="0" aria-label="3D map of the Fort Worth Botanic Garden campus"></canvas>
+
+<section class="panel" aria-label="Map controls">
+  <h1 class="name">Fort Worth Botanic Garden</h1>
+  <p class="title">Explore the campus in 3D</p>
+  <div class="seg" role="group" aria-label="Navigation mode">
+    <button id="modeFly" aria-pressed="true">Fly over</button>
+    <button id="modeWalk" aria-pressed="false">Walk</button>
+  </div>
+  <label class="go" for="dest">Go to a destination
+    <select id="dest"><option value="">Choose a garden…</option></select>
+  </label>
+  <div class="row">
+    <button class="chip" id="labels" aria-pressed="true">Number pins</button>
+    <button class="chip" id="overview">Full view</button>
+    <button class="chip" id="fullscreen" hidden>Full screen</button>
+  </div>
+</section>
+
+<div class="hint" id="hint"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="pad" id="pad" aria-label="Walk controls">
+  <button class="up" data-k="fwd" aria-label="Walk forward">▲</button>
+  <button class="left" data-k="tl" aria-label="Turn left">◀</button>
+  <button class="down" data-k="back" aria-label="Walk back">▼</button>
+  <button class="right" data-k="tr" aria-label="Turn right">▶</button>
+</div>
+<div class="loading" id="loading"><p>Planting the trees…</p></div>
+<div class="error" id="error"><p>The 3D view needs WebGL, which this browser or device has turned off. Try another browser, or enable hardware acceleration.</p></div>
+
+<script src="data.js"></script>
+<script src="vendor/three.min.js"></script>
+<script src="vendor/OrbitControls.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
