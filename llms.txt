@@ -6,8 +6,8 @@
 > several source repositories via automated and manual publishing.
 
 This site mixes hand-maintained scaffolding with pages auto-published from sibling repos. Treat
-`begonias/` and `collections/` as generated mirrors, not editable sources — their source repos
-are linked below.
+`begonias/`, its variants (`begonias-embed/`, `begonias-unbranded/`, `begonias-unbranded-plain/`), and
+and `collections/` as generated mirrors, not editable sources — their source repos are linked below.
 
 ## About FWBG and BRIT
 
@@ -27,13 +27,18 @@ own website (visiting, programs, general information), see [fwbg.org](https://fw
 ## Pages
 
 - [Home](https://fwbg.github.io/index.html): Landing page with links to FWBG and BRIT GitHub organizations.
+- [Home (minimal variant)](https://fwbg.github.io/index-minimal.html): Plain-styled alternate homepage with the same purpose and links, using its own stylesheet.
 - [Begonia Collection dashboard](https://fwbg.github.io/begonias/index.html): Interactive React dashboard exploring the Begonia collection (charts, sortable table). Auto-published from [FWBG/living_collections](https://github.com/FWBG/living_collections).
-- [FWBG Collections](https://fwbg.github.io/collections/index.html): Index of Fort Worth Botanic Garden and BRIT digital collections. Auto-published from [FWBG/collections](https://github.com/FWBG/collections).
+- Begonia dashboard variants (same dashboard and data, different presentation; all auto-published from the same repo):
+  - [Embed](https://fwbg.github.io/begonias-embed/index.html): Branded, built to sit in an iframe on fwbg.org; reports its height to the parent page.
+  - [Unbranded](https://fwbg.github.io/begonias-unbranded/index.html): Neutral styling without FWBG brand tokens.
+  - [Unbranded, plain masthead](https://fwbg.github.io/begonias-unbranded-plain/index.html): Unbranded with a plain masthead.
+- [FWBG Collections](https://fwbg.github.io/collections/index.html): Index of Fort Worth Botanic Garden and BRIT digital collections (living collections; plant, fungal and lichen herbarium portals; library and archives; Carlquist collections; Zenodo community). Auto-published from [FWBG/collections](https://github.com/FWBG/collections).
 
 ## Source repositories
 
 - [FWBG/FWBG.github.io](https://github.com/FWBG/FWBG.github.io): This site itself (publish target; also hosts the manually-maintained homepage).
-- [FWBG/living_collections](https://github.com/FWBG/living_collections): Source for the Begonia dashboard published to `/begonias/`.
+- [FWBG/living_collections](https://github.com/FWBG/living_collections): Source for the Begonia dashboard published to `/begonias/` and its variant folders.
 - [FWBG/collections](https://github.com/FWBG/collections): Source for the collections index published to `/collections/`.
 - [FWBG on GitHub](https://github.com/FWBG): Full list of FWBG repositories.
 - [BRIT on GitHub](https://github.com/BRITorg/): Full list of Botanical Research Institute of Texas repositories.

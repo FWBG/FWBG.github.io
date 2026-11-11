@@ -27,12 +27,13 @@ programs, admission), see [fwbg.org](https://fwbg.org).
 ## Site overview
 
 fwbg.github.io aggregates digital resources from the Fort Worth Botanic Garden and the
-Botanical Research Institute of Texas (BRIT). It is fed by three distinct mechanisms:
+Botanical Research Institute of Texas (BRIT). It is fed by three distinct mechanisms (the second covers four Begonia folders):
 
 1. **Manual direct commits** to this repo's `main` branch — used for the site's own scaffolding
-   (`index.html`, `.nojekyll`, `README.md`, `PUBLISHING.md`). Nothing
-   generates or syncs these files automatically.
-2. **Automated publish of `/begonias/`** from a GitHub Actions workflow in
+   (`index.html`, `index-minimal.html` and `minimal/`, `llms.txt`, `llms-full.txt`, `tools/`, `.nojekyll`,
+   `README.md`, `PUBLISHING.md`, `TODO.md`). Nothing generates or syncs these files automatically.
+2. **Automated publish of `/begonias/` and its variants** (`/begonias-embed/`, `/begonias-unbranded/`,
+   `/begonias-unbranded-plain/`) from a GitHub Actions workflow in
    [FWBG/living_collections](https://github.com/FWBG/living_collections)
    (`.github/workflows/publish-begonia.yml`). It stages the Begonia dashboard with
    `tools/stage-pages.py` and rsyncs it (`--delete`) into this repo's `begonias/` folder using a
@@ -42,7 +43,7 @@ Botanical Research Institute of Texas (BRIT). It is fed by three distinct mechan
 
 Full detail on the publishing pipelines is in [PUBLISHING.md](https://fwbg.github.io/PUBLISHING.md).
 
-**Implication for anyone editing this site or its sources:** `begonias/` and `collections/` are
+**Implication for anyone editing this site or its sources:** `begonias/`, the three `begonias-*` variant folders, and `collections/` are
 CI-generated mirrors. Edits made directly inside those folders on `fwbg.github.io` will be
 silently overwritten the next time the corresponding workflow runs. The real, editable source
 for the Begonia dashboard lives in `FWBG/living_collections` (dashboard files under
@@ -54,8 +55,13 @@ for the Begonia dashboard lives in `FWBG/living_collections` (dashboard files un
 
 Landing page for the site. States the site's purpose (digital tools and resources: datasets,
 dashboards, applications) and links out to the two GitHub organizations behind the content:
-[FWBG](https://github.com/FWBG) and [BRIT](https://github.com/BRITorg/). Manually maintained —
-not generated.
+[FWBG](https://github.com/FWBG) and [BRIT](https://github.com/BRITorg/), and to fwbg.org. Manually
+maintained — not generated. Carries the site's Google Analytics tag.
+
+### Home (minimal variant) — `/index-minimal.html`
+
+Alternate homepage with the same purpose and links, styled by its own hand-written stylesheet
+(`minimal/styles.css`) rather than the FWBG brand tokens. Manually maintained.
 
 ### Begonia Collection dashboard — `/begonias/`
 
@@ -67,15 +73,41 @@ from CDN, no build step) reading data from `data/collections-v2.js`.
 - **Source of truth:** [FWBG/living_collections](https://github.com/FWBG/living_collections)
 - **Published by:** `.github/workflows/publish-begonia.yml`, triggered on pushes to
   `dashboards/begonia/**`, `fwbg/**`, or `tools/stage-pages.py`, or manual dispatch.
-- **Commit signature on this repo:** `Publish begonia dashboard from FWBG/living_collections@<sha>`
+- **Commit signature on this repo:** `Publish begonia dashboard (branded) from FWBG/living_collections@<sha>`
+
+### Begonia dashboard variants — `/begonias-embed/`, `/begonias-unbranded/`, `/begonias-unbranded-plain/`
+
+Three further builds of the same dashboard (same `index.html` structure, `src/`, and
+`data/collections-v2.js`), published alongside the branded one from the same source repo. They differ
+only in presentation:
+
+| Folder | Difference from `/begonias/` |
+| --- | --- |
+| `/begonias-embed/` | Branded; sets `window.__DS_VARIANT = "embed"` and posts its page height to the parent window (allowed origins: fwbg.org and its staging alias) so it can be embedded in an iframe on fwbg.org |
+| `/begonias-unbranded/` | Uses `src/tokens-unbranded.css` and `fwbg-unbranded/tokens/` instead of the FWBG brand tokens and assets |
+| `/begonias-unbranded-plain/` | Unbranded, plus `window.__DS_VARIANT = "unbranded"` (plain masthead) |
+
+- **Source of truth:** [FWBG/living_collections](https://github.com/FWBG/living_collections), same as above.
+- **Commit signatures:** `Publish begonia dashboard (embed | unbranded | unbranded, plain masthead) from FWBG/living_collections@<sha>`
+- Prefer `/begonias/` as the canonical link; the variants exist for embedding and neutral-brand reuse.
 
 ### FWBG Collections — `/collections/`
 
 Index page describing the many collections and their digital counterparts at FWBG and BRIT, with
-links out to each, alongside its own `index.html` and `styles.css`.
+links out to each, alongside its own `index.html` and `styles.css`. Sections as of 2026-11-11:
+
+- **Fort Worth Botanic Garden:** Living Collections (Garden Explorer) and the Begonia Collection (`/begonias/`).
+- **BRIT Philecology Herbarium:** the BRIT (collid 370), VDB (264) and NLU (309) collection profiles on
+  torcherbaria.org / SERNEC, plus BRIT Mycology (MyCoPortal, collid 87) and BRIT Lichenology
+  (Consortium of Lichen Herbaria portal, collid 74). The UHCC profile (collid 509) is no longer linked.
+- **BRIT Library and Archives:** Sherwin J. Carlquist Collection and the FWBG Legacy and Fort Worth
+  Garden Club collections on the UNT Portal to Texas History, the all-BRIT-items UNT partner page,
+  [Sherwin Carlquist Digital Extended Specimen Network](https://britorg.github.io/carlquist_esn/),
+  library finding aids (txarchives.org), a LibGuide, the library catalog (TCU Primo), and the
+  [BRIT community on Zenodo](https://zenodo.org/communities/brit/).
 
 - **Source of truth:** [FWBG/collections](https://github.com/FWBG/collections) (not mirrored
-  locally in this workspace as of 2026-09-22; inferred from commit pattern)
+  locally in this workspace; inferred from commit pattern)
 - **Commit signature on this repo:** `Publish collections page from FWBG/collections@<sha>`
 - This has been the most active of the two automated pipelines to date.
 
@@ -84,18 +116,20 @@ links out to each, alongside its own `index.html` and `styles.css`.
 The FWBG Collections page (`/collections/`) links out to several third-party collection-management
 systems. Some of these expose structured bulk-data endpoints that are far cheaper to fetch than
 crawling their search/browse pages one record at a time — use these where available. Checked
-2026-09-22.
+2026-09-22; the Symbiota table above was re-checked 2026-11-11 (all DwC-A links returned HTTP 200).
 
-### Symbiota herbarium portals (torcherbaria.org / SEINet / SERNEC network)
+### Symbiota herbarium portals (torcherbaria.org / SERNEC / MyCoPortal / Lichen portal)
 
 FWBG/BRIT specimen data is hosted on Symbiota-based portals, linked from `/collections/` as
-`collprofiles.php?collid=<ID>` pages:
+`collprofiles.php?collid=<ID>` pages. Collection IDs are per-portal, not global:
 
 | Collection | Profile page | DwC-A download | GBIF dataset |
 | --- | --- | --- | --- |
 | BRIT Herbarium | `.../collprofiles.php?collid=370` | https://portal.torcherbaria.org/portal/content/dwca/BRIT-BRIT_DwC-A.zip | https://www.gbif.org/dataset/defb9a47-c1a7-4fb2-9a0b-2da7c5260cad |
 | Vanderbilt University Herbarium (BRIT-VDB) | `.../collprofiles.php?collid=264` | https://sernecportal.org/portal/content/dwca/BRIT-VDB_DwC-A.zip | https://www.gbif.org/dataset/3111dc38-3143-4792-9802-610f1de4961c |
-| Univ. of Houston Coastal Center Herbarium (UHCC) | `.../collprofiles.php?collid=509` | https://portal.torcherbaria.org/portal/content/dwca/UHCC_DwC-A.zip | (linked from profile page) |
+| Univ. of Louisiana at Monroe Herbarium, R. Dale Thomas Collection (BRIT-NLU) | `.../collprofiles.php?collid=309` | https://sernecportal.org/portal/content/dwca/BRIT-NLU_DwC-A.zip | https://www.gbif.org/dataset/bb0366a9-2a7e-44f8-9c9a-e49c23dae2f8 |
+| BRIT Mycology (MyCoPortal) | `mycoportal.org/portal/collections/misc/collprofiles.php?collid=87` | https://mycoportal.org/portal/content/dwca/BRIT_DwC-A.zip | (not listed on profile page) |
+| BRIT Lichens (Lichen portal) | `lichenportal.org/portal/collections/misc/collprofiles.php?collid=74` | https://lichenportal.org/portal/content/dwca/BRIT_DwC-A.zip | https://www.gbif.org/dataset/668d3577-f727-4526-aebe-9f6c7ef449ae |
 
 Each collection profile page links directly to a **Darwin Core Archive (DwC-A)** zip — a complete,
 structured snapshot of every specimen record — plus a GBIF dataset page. EML metadata for any
@@ -107,9 +141,15 @@ collection profile, on this or any other SEINet/SERNEC-network portal), fetch th
 links on that profile page instead of crawling the occurrence-search interface — this pattern holds
 for any future Symbiota-hosted collection linked from this site, not just the three above.
 
+### Zenodo (BRIT community)
+
+[zenodo.org/communities/brit](https://zenodo.org/communities/brit/) is linked from `/collections/`. Zenodo
+provides a public REST API; prefer it over crawling the community pages (not verified here).
+
 ### UNT Portal to Texas History (texashistory.unt.edu)
 
-Collections linked from `/collections/` (e.g. `/explore/collections/SJCC/`) expose a JSON API per
+Collections linked from `/collections/` (e.g. `/explore/collections/SJCC/`; partner pages such as
+`/explore/partners/BRIT/` and `/explore/partners/FWGC/` are also linked) expose a JSON API per
 collection at `/explore/collections/<CODE>/api/` and an RSS feed at `/explore/collections/<CODE>/feed/`.
 Prefer the API for structured metadata over paging through browse/search results.
 
@@ -130,7 +170,7 @@ confirmed otherwise; don't assume an API exists.
 | Repo | Role |
 | --- | --- |
 | [FWBG/FWBG.github.io](https://github.com/FWBG/FWBG.github.io) | This site — the publish target for all three mechanisms above |
-| [FWBG/living_collections](https://github.com/FWBG/living_collections) | Editable source of the Begonia dashboard, published into `/begonias/` |
+| [FWBG/living_collections](https://github.com/FWBG/living_collections) | Editable source of the Begonia dashboard, published into `/begonias/` and the three `/begonias-*/` variant folders |
 | [FWBG/collections](https://github.com/FWBG/collections) | Editable source of the collections index, published into `/collections/` |
 | [FWBG on GitHub](https://github.com/FWBG) | Full list of Fort Worth Botanic Garden repositories |
 | [BRIT on GitHub](https://github.com/BRITorg/) | Full list of Botanical Research Institute of Texas repositories |
@@ -138,8 +178,9 @@ confirmed otherwise; don't assume an API exists.
 ## Notes for LLM agents
 
 - If asked to change something visible on fwbg.github.io, first check whether the path is under
-  `/begonias/` or `/collections/` — if so, the change belongs in the source repo
+  `/begonias/`, `/begonias-embed/`, `/begonias-unbranded/`, `/begonias-unbranded-plain/`, or `/collections/` — if so, the change belongs in the source repo
   (`living_collections` or `collections`), not here.
-- `index.html` is the only part of this repo safe to edit directly.
+- `index.html` and `index-minimal.html` (with `minimal/`), plus the docs, `llms*.txt`, and `tools/`, are the
+  parts of this repo safe to edit directly.
 - This site aggregates content across repositories; it does not itself contain the underlying
   botanical/collections datasets — those live in the source repos linked above.
